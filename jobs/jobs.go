@@ -87,7 +87,7 @@ func StartIRCRobot(channel, server string) {
 	irccon1.AddCallback("001", func(e *irc.Event) { irccon1.Join(channel) })
 	irccon1.AddCallback("002", func(e *irc.Event) {
 		go func(e *irc.Event) {
-			tick := time.NewTicker(1 * time.Minute)
+			tick := time.NewTicker(30 * time.Minute)
 			for {
 				<-tick.C
 				if msg != "" {
