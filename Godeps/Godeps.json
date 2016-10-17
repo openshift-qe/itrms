@@ -1,0 +1,47 @@
+{
+	"ImportPath": "github.com/wanghaoran1988/itrms",
+	"GoVersion": "go1.7.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/CenturyLinkLabs/docker-reg-client/registry",
+			"Rev": "4bc892c78c562916189aaa1a0edd43e194dc60b3"
+		},
+		{
+			"ImportPath": "github.com/astaxie/beego",
+			"Comment": "v1.6.1-5-g88c5dfa",
+			"Rev": "88c5dfa6ead42e624c2e7d9e04eab6cb2d07412a"
+		},
+		{
+			"ImportPath": "github.com/coreos/etcd/client",
+			"Comment": "v3.0.0-beta.0-1441-gb3a083d",
+			"Rev": "b3a083d336172f795b2550527647db8de3d9ce65"
+		},
+		{
+			"ImportPath": "github.com/coreos/etcd/pkg/pathutil",
+			"Comment": "v3.0.0-beta.0-1441-gb3a083d",
+			"Rev": "b3a083d336172f795b2550527647db8de3d9ce65"
+		},
+		{
+			"ImportPath": "github.com/coreos/etcd/pkg/types",
+			"Comment": "v3.0.0-beta.0-1441-gb3a083d",
+			"Rev": "b3a083d336172f795b2550527647db8de3d9ce65"
+		},
+		{
+			"ImportPath": "github.com/jasonlvhit/gocron",
+			"Rev": "42a5804d37aa0b9239b265e894a16b8edbf52d54"
+		},
+		{
+			"ImportPath": "github.com/thoj/go-ircevent",
+			"Comment": "0.1",
+			"Rev": "a6b1561a016c2a4aae183c3ef152c25d134c095d"
+		},
+		{
+			"ImportPath": "github.com/ugorji/go/codec",
+			"Rev": "646ae4a518c1c3be0739df898118d9bccf993858"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "749a502dd1eaf3e5bfd4f8956748c502357c0bbe"
+		}
+	]
+}
