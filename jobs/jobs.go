@@ -9,26 +9,26 @@ import (
 	"strings"
 	"time"
 
+	"github.com/astaxie/beego"
 	"golang.org/x/net/context"
 
 	"github.com/CenturyLinkLabs/docker-reg-client/registry"
-	"github.com/astaxie/beego"
 	irc "github.com/thoj/go-ircevent"
 	c "github.com/wanghaoran1988/itrms/controllers"
 	"github.com/wanghaoran1988/itrms/models"
 )
 
 const server = "irc.lab.bos.redhat.com:6667"
-const channel = "#devexp-standup"
+const channel = "#aos-qe"
 
-var msg = ""
+var msg []string
 
 func init() {
 	go StartIRCRobot(channel, server)
 }
 
 func UpdateImageIDTask() {
-	msg = ""
+	msg = []string{}
 	beego.Info("UpdateImageIDTask")
 	imageList := c.ListImage()
 
@@ -70,7 +70,7 @@ func UpdateImageIDTask() {
 		}
 		if image.Status == c.ImageStatusNew {
 			imageChanged += 1
-			msg += image.Owner + ", Image updated:" + image.ImageName + ". "
+			msg = append(msg, image.Owner+", Image updated:"+image.ImageName+". ")
 		}
 
 	}
@@ -87,11 +87,11 @@ func StartIRCRobot(channel, server string) {
 	irccon1.AddCallback("001", func(e *irc.Event) { irccon1.Join(channel) })
 	irccon1.AddCallback("002", func(e *irc.Event) {
 		go func(e *irc.Event) {
-			tick := time.NewTicker(30 * time.Minute)
+			tick := time.NewTicker(120 * time.Minute)
 			for {
 				<-tick.C
-				if msg != "" {
-					irccon1.Privmsgf(channel, "%s\n", msg)
+				for _, m := range msg {
+					irccon1.Privmsgf(channel, "%s\n", m)
 				}
 			}
 		}(e)
