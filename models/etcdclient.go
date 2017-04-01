@@ -15,7 +15,7 @@ import (
 var Etcdclient client.KeysAPI
 
 const (
-	ImageIDPrefix = "/imagesid"
+	ImageIDPrefix = "/imagesid/test"
 )
 
 func init() {
@@ -41,6 +41,7 @@ func GetImageID() int {
 	var id int = 0
 	resp, err := Etcdclient.Get(context.Background(), ImageIDPrefix, nil)
 	if err != nil {
+		log.Printf("Set is error. %s\n", err)
 		//log.Fatal(err)
 	} else {
 		id, _ = strconv.Atoi(resp.Node.Value)
@@ -49,7 +50,8 @@ func GetImageID() int {
 	}
 	resp, err = Etcdclient.Set(context.Background(), ImageIDPrefix, strconv.Itoa(id), nil)
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("Set is error. %s\n", err)
+		//log.Fatal(err)
 	} else {
 		// print common key info
 		log.Printf("Set is done. Metadata is %q\n", resp)
